@@ -5,8 +5,7 @@
   "main": "backend/server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "dev": "nodemon backend/server.js",
-    "dev:server": "nodemon backend/server.js",
+    "dev": "nodemon --watch backend --ext js,json,ejs backend/server.js",
     "build:css": "npx tailwindcss -i ./backend/public/css/input.css -o ./backend/public/css/styles.css",
     "watch:css": "npm run build:css -- --watch"
   },

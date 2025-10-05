@@ -3,6 +3,7 @@
 
 # Environment variables
 .env
+backend/.env
 
 # Production
 /build
