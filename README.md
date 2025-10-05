@@ -80,6 +80,14 @@ The `Student` model includes the following fields:
 - **Authentication**: JSON Web Tokens (JWT), bcrypt.js for password hashing
 - **Development**: `nodemon` for live server reloading
 
+## Test Credentials
+
+For testing the application, use these credentials:
+```
+Username: tester
+Password: test123
+```
+
 ## Local Setup and Installation
 
 Follow these steps to run the project on your local machine.

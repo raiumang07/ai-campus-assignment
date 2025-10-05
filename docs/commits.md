@@ -2,10 +2,9 @@
 
 ## Project Timeline: 24-Hour Development Sprint
 
-**Project Start**: [Your Start Date/Time]  
-**Project End**: [Your End Date/Time]  
-**Total Duration**: ~24 hours  
-**Developer**: [Your Name]
+**Development Date**: October 5, 2025  
+**Duration**: 24 hours (Afternoon to Midnight)  
+**Developer**: Umang Rai
 
 ---
 
@@ -27,7 +26,7 @@ git log --oneline --graph --all --decorate
 ## Hourly Development Progress
 
 ### Hour 0-1: Project Initialization & Setup
-**Time**: [Start Time] - [+1 Hour]
+**Phase**: Initial Setup
 
 **Commits**:
 - `Initial commit: Project scaffolding`
@@ -52,7 +51,7 @@ git log --oneline --graph --all --decorate
 ---
 
 ### Hour 2-3: Database Setup & Models
-**Time**: [+1 Hour] - [+3 Hours]
+**Phase**: Database Configuration
 
 **Commits**:
 - `Add MongoDB connection configuration`
@@ -78,7 +77,7 @@ git log --oneline --graph --all --decorate
 ---
 
 ### Hour 4-5: Authentication System
-**Time**: [+3 Hours] - [+5 Hours]
+**Phase**: Security Implementation
 
 **Commits**:
 - `Implement JWT authentication service`
@@ -105,7 +104,7 @@ git log --oneline --graph --all --decorate
 ---
 
 ### Hour 6-8: Student CRUD Operations
-**Time**: [+5 Hours] - [+8 Hours]
+**Phase**: Core Functionality
 
 **Commits**:
 - `Add student service layer with CRUD operations`
@@ -135,7 +134,7 @@ git log --oneline --graph --all --decorate
 ---
 
 ### Hour 9-11: Pagination, Filtering & Search
-**Time**: [+8 Hours] - [+11 Hours]
+**Phase**: Data Management Features
 
 **Commits**:
 - `Add pagination to student listing`
@@ -166,7 +165,7 @@ const students = await Student.find(query)
 ---
 
 ### Hour 12-14: EJS Templates & Basic UI
-**Time**: [+11 Hours] - [+14 Hours]
+**Phase**: User Interface Foundation
 
 **Commits**:
 - `Create login.ejs template`
@@ -192,7 +191,7 @@ const students = await Student.find(query)
 ---
 
 ### Hour 15-17: Tailwind CSS Integration
-**Time**: [+14 Hours] - [+17 Hours]
+**Phase**: Styling & Design
 
 **Commits**:
 - `Add Tailwind CSS via CDN`
@@ -217,7 +216,7 @@ const students = await Student.find(query)
 ---
 
 ### Hour 18-20: UI Enhancement & Polish
-**Time**: [+17 Hours] - [+20 Hours]
+**Phase**: Advanced UI Features
 
 **Commits**:
 - `Add glass-morphism effects to cards`
@@ -264,7 +263,7 @@ const students = await Student.find(query)
 ---
 
 ### Hour 21-22: Testing & Bug Fixes
-**Time**: [+20 Hours] - [+22 Hours]
+**Phase**: Quality Assurance
 
 **Commits**:
 - `Fix dropdown text visibility issue`
@@ -295,7 +294,7 @@ const students = await Student.find(query)
 ---
 
 ### Hour 23-24: Documentation & Deployment
-**Time**: [+22 Hours] - [+24 Hours]
+**Phase**: Final Polish & Deployment
 
 **Commits**:
 - `Create comprehensive README.md`
@@ -385,7 +384,7 @@ const students = await Student.find(query)
 
 ## Repository Information
 
-**GitHub URL**: [Your GitHub Repository URL]  
+**GitHub URL**: https://github.com/raiumang07/ai-campus-assignment  
 **Live Application**: https://ai-campus-assignment-l9w4.onrender.com  
 **Demo Video**: [Link in docs/video.md]  
 
@@ -396,7 +395,7 @@ const students = await Student.find(query)
 To verify this development history:
 ```bash
 # Clone the repository
-git clone [your-repo-url]
+git clone https://github.com/raiumang07/ai-campus-assignment
 
 # View commit history
 cd ai-campus-assignment

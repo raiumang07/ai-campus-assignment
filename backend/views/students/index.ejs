@@ -5,10 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Dashboard - Student Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function setTheme(theme) {
+            const body = document.body;
+            body.classList.remove('theme-glass', 'theme-dark');
+            body.classList.add(theme);
+            localStorage.setItem('sms_theme', theme); // Using a specific key for our app
+            
+            // Update active button state
+            document.querySelectorAll('.theme-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.theme === theme) {
+                    btn.classList.add('active');
+                }
+            });
+        }
+
+        // Listen for theme changes from other pages
+        window.addEventListener('storage', (e) => {
+            if (e.key === 'sms_theme') {
+                setTheme(e.newValue);
+            }
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('sms_theme') || 'theme-glass';
+            setTheme(savedTheme);
+        });
+    </script>
+    <style>
+        /* Glass Theme (Current) */
+        .theme-glass {
+            background: linear-gradient(135deg, rgb(15, 23, 42) 0%, rgb(88, 28, 135) 50%, rgb(15, 23, 42) 100%);
+            min-height: 100vh;
+        }
+        .theme-glass .header-bg {
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .theme-glass .card-bg {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .theme-glass .text-theme-primary {
+            color: white;
+        }
+        .theme-glass .text-theme-secondary {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Dark Professional Theme */
+        .theme-dark {
+            background-color: #0f172a;
+            min-height: 100vh;
+        }
+        .theme-dark .header-bg {
+            background-color: #1e293b;
+            border-bottom: 1px solid #334155;
+        }
+        .theme-dark .card-bg {
+            background-color: #1e293b;
+            border: 1px solid #334155;
+        }
+        .theme-dark .text-theme-primary {
+            color: #e2e8f0;
+        }
+        .theme-dark .text-theme-secondary {
+            color: #94a3b8;
+        }
+        .theme-dark .button-primary {
+            background: linear-gradient(135deg, #1e40af 0%, #3730a3 100%);
+        }
+        .theme-dark .table-row-alt {
+            background-color: #1e293b;
+        }
+        .theme-dark .table-border {
+            border-color: #334155;
+        }
+
+        
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(8px);
+            padding: 0.25rem;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 60;
+        }
+        .theme-btn {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.8);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .theme-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        .theme-btn.active {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+<body class="min-h-screen">
+    <!-- Theme Toggle Buttons -->
+    <div class="theme-toggle" style="right: auto; left: 1rem;">
+        <button class="theme-btn" data-theme="theme-glass" onclick="setTheme('theme-glass')" title="Glass Theme">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
+            </svg>
+        </button>
+        <button class="theme-btn" data-theme="theme-dark" onclick="setTheme('theme-dark')" title="Dark Theme">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+        </button>
+    </div>
     <!-- Navigation Header -->
-    <header class="sticky top-0 z-50 backdrop-blur-xl bg-slate-900/80 border-b border-white/10 shadow-lg">
+    <header class="sticky top-0 z-50 header-bg shadow-lg">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16">
                 <!-- Logo & Title -->
@@ -19,19 +147,19 @@
                         </svg>
                     </div>
                     <div>
-                        <h1 class="text-lg font-bold text-white">Student Management</h1>
-                        <p class="text-xs text-gray-400">Shipsy Assignment</p>
+                        <h1 class="text-lg font-bold text-theme-primary">Student Management</h1>
+                        <p class="text-xs text-theme-secondary">Shipsy Assignment</p>
                     </div>
                 </div>
 
                 <!-- User Info & Actions -->
                 <div class="flex items-center space-x-4">
                     <div class="hidden sm:block text-right">
-                        <p class="text-sm font-medium text-white">Admin User</p>
-                        <p class="text-xs text-gray-400">System Administrator</p>
+                        <p class="text-sm font-medium text-theme-primary">Admin User</p>
+                        <p class="text-xs text-theme-secondary">System Administrator</p>
                     </div>
                     <form action="/auth/logout" method="POST" class="inline">
-                        <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-gray-300 hover:text-white bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-200 border border-white/10">
+                        <button type="submit" class="flex items-center px-4 py-2 text-sm font-medium text-theme-secondary hover:text-theme-primary bg-white/5 hover:bg-white/10 rounded-lg transition-all duration-200 border border-white/10">
                             <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                             </svg>
@@ -45,7 +173,7 @@
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <!-- Page Header -->
-        <div class="mb-8">
+        <div class="mb-8 card-bg rounded-xl p-6">
             <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
                 <div>
                     <h2 class="text-3xl font-bold text-white mb-2">Student Dashboard</h2>
@@ -194,16 +322,16 @@
                             </th>
                         </tr>
                     </thead>
-                    <tbody class="divide-y divide-white/5">
+                    <tbody class="divide-y table-border">
                         <% if (students.length === 0) { %>
                             <tr>
                                 <td colspan="7" class="px-6 py-12 text-center">
                                     <div class="flex flex-col items-center justify-center">
-                                        <svg class="w-16 h-16 text-gray-600 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <svg class="w-16 h-16 text-theme-secondary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path>
                                         </svg>
-                                        <p class="text-gray-400 text-lg font-medium">No students found</p>
-                                        <p class="text-gray-500 text-sm mt-1">Try adjusting your filters or add a new student</p>
+                                        <p class="text-theme-primary text-lg font-medium">No students found</p>
+                                        <p class="text-theme-secondary text-sm mt-1">Try adjusting your filters or add a new student</p>
                                     </div>
                                 </td>
                             </tr>
@@ -217,7 +345,7 @@
                                                 <span class="text-white font-semibold text-sm"><%= student.name.charAt(0).toUpperCase() %></span>
                                             </div>
                                             <div class="ml-4">
-                                                <div class="text-sm font-medium text-white"><%= student.name %></div>
+                                                <div class="text-sm font-medium text-theme-primary"><%= student.name %></div>
                                             </div>
                                         </div>
                                     </td>
@@ -362,6 +490,14 @@
                             System Online
                         </span>
                         <span>MongoDB Connected</span>
+                        <a href="https://github.com/raiumang07/ai-campus-assignment" 
+                           target="_blank" 
+                           class="flex items-center hover:text-white transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+                            </svg>
+                            GitHub Repo by Umang Rai
+                        </a>
                     </div>
                 </div>
             </div>

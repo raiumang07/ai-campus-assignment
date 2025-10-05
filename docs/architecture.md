@@ -1030,4 +1030,4 @@ This architecture provides:
 ✅ **Well-documented** - Easy for team collaboration  
 
 **Live Application**: https://ai-campus-assignment-l9w4.onrender.com  
-**Repository**: [Your GitHub URL]
+**Repository**: https://github.com/raiumang07/ai-campus-assignment

@@ -25,9 +25,30 @@ const studentRoutes = require('./routes/studentRoutes');
 app.use('/auth', authRoutes);
 app.use('/students', protect, studentRoutes);
 
+// Create test user if it doesn't exist
+const User = require('./models/User');
+const bcrypt = require('bcryptjs');
+
+async function createTestUser() {
+    try {
+        const exists = await User.findOne({ username: 'tester' });
+        if (!exists) {
+            const hashedPassword = await bcrypt.hash('test123', 10);
+            await User.create({
+                username: 'tester',
+                password: hashedPassword
+            });
+            console.log('Test user created successfully');
+        }
+    } catch (error) {
+        console.error('Error creating test user:', error);
+    }
+}
+
 // Home
 app.get('/', (req, res) => {
-	return res.redirect('/students');
+    createTestUser(); // Create test user when app starts
+    return res.redirect('/students');
 });
 
 // MongoDB Connection and server start
