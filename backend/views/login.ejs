@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black text-gray-200">
+    <header class="sticky top-0 z-10 backdrop-blur bg-black/40 border-b border-white/10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="text-sm font-semibold tracking-wide text-white">Student Management</a>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex items-center justify-center min-h-[60vh]">
+            <div class="w-full max-w-md p-8 space-y-6 rounded-xl shadow-2xl bg-neutral-900/80 border border-white/10 backdrop-blur">
+                <h2 class="text-2xl font-semibold text-center text-white">Login</h2>
+                <% if (locals.error) { %>
+                    <div class="p-4 text-sm text-red-300 bg-red-900/60 rounded-lg" role="alert"><%= error %></div>
+                <% } %>
+                <form class="space-y-5" action="/auth/login" method="POST">
+                    <div>
+                        <label for="username" class="text-xs font-medium text-gray-300">Username</label>
+                        <input type="text" id="username" name="username" required class="block w-full px-3 py-2 mt-1 text-white placeholder-gray-400 bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <label for="password" class="text-xs font-medium text-gray-300">Password</label>
+                        <input type="password" id="password" name="password" required class="block w-full px-3 py-2 mt-1 text-white placeholder-gray-400 bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <div>
+                        <button type="submit" class="w-full px-4 py-2 text-sm font-medium text-white bg-indigo-600 rounded-md shadow hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500">Login</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

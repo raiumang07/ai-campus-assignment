@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black text-gray-200">
+    <header class="sticky top-0 z-10 backdrop-blur bg-black/40 border-b border-white/10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="text-sm font-semibold tracking-wide text-white">Student Management</a>
+            <nav class="text-sm">
+                <a href="/students" class="text-gray-300 hover:text-white transition-colors">Students</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <%- body %>
+    </main>
+</body>
+</html>

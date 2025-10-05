@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= (typeof student !== 'undefined' && student._id) ? 'Edit' : 'Add' %> Student - Student Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-gradient-to-b from-black via-neutral-900 to-black text-gray-200">
+    <header class="sticky top-0 z-10 backdrop-blur bg-black/40 border-b border-white/10">
+        <div class="container mx-auto px-4 py-3 flex items-center justify-between">
+            <a href="/" class="text-sm font-semibold tracking-wide text-white">Student Management</a>
+            <nav class="text-sm"><a href="/students" class="text-gray-300 hover:text-white">Students</a></nav>
+        </div>
+    </header>
+    <main class="container mx-auto px-4 py-8">
+        <div class="p-6 mx-auto rounded-xl shadow-2xl bg-neutral-900/80 border border-white/10 backdrop-blur max-w-lg">
+          <h1 class="mb-5 text-2xl font-semibold text-white"><%= (typeof student !== 'undefined' && student._id) ? 'Edit' : 'Add' %> Student</h1>
+          <form action="<%= (typeof student !== 'undefined' && student._id) ? '/students/edit/' + student._id : '/students/add' %>" method="POST" class="space-y-5">
+        <div>
+            <label for="name" class="block text-xs font-medium text-gray-300">Name</label>
+            <input type="text" id="name" name="name" value="<%= (typeof student !== 'undefined') ? student.name : '' %>" required class="block w-full px-3 py-2 mt-1 text-white placeholder-gray-400 bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+            <label for="branch" class="block text-xs font-medium text-gray-300">Branch</label>
+            <select id="branch" name="branch" required class="block w-full px-3 py-2 mt-1 text-white bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <% ['CSE','IT','ECE','ME','CE'].forEach(function(b){ %>
+                    <option value="<%= b %>" <%= ((typeof student !== 'undefined') && student.branch === b) ? 'selected' : '' %>><%= b %></option>
+                <% }) %>
+            </select>
+        </div>
+        <div>
+            <label for="cgpa" class="block text-xs font-medium text-gray-300">CGPA</label>
+            <input type="number" id="cgpa" name="cgpa" step="0.01" min="0" max="10" value="<%= (typeof student !== 'undefined') ? student.cgpa : '' %>" required class="block w-full px-3 py-2 mt-1 text-white placeholder-gray-400 bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div>
+            <label for="attendance" class="block text-xs font-medium text-gray-300">Attendance (%)</label>
+            <input type="number" id="attendance" name="attendance" step="1" min="0" max="100" value="<%= (typeof student !== 'undefined') ? student.attendance : '' %>" required class="block w-full px-3 py-2 mt-1 text-white placeholder-gray-400 bg-neutral-800 border border-white/10 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500">
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" id="isHosteller" name="isHosteller" class="w-4 h-4 text-indigo-600 bg-neutral-800 border-white/10 rounded focus:ring-indigo-500" <%= (typeof student !== 'undefined' && student.isHosteller) ? 'checked' : '' %>>
+            <label for="isHosteller" class="block ml-2 text-xs text-gray-300">Hosteller</label>
+        </div>
+            <div class="flex justify-end pt-3 space-x-3">
+                <a href="/students" class="px-3 py-2 text-xs font-medium text-gray-300 bg-neutral-800 border border-white/10 rounded-md hover:bg-neutral-700">Cancel</a>
+                <button type="submit" class="px-3 py-2 text-xs font-medium text-white bg-indigo-600 rounded-md hover:bg-indigo-500">Save</button>
+            </div>
+          </form>
+        </div>
+    </main>
+</body>
+</html>
