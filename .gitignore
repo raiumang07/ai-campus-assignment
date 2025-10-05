@@ -8,6 +8,11 @@ backend/.env
 # Production
 /build
 
+# Screenshots (until actual screenshots are added)
+/screenshots/*.png
+/screenshots/*.jpg
+/screenshots/*.gif
+
 # Logs
 npm-debug.log*
 yarn-debug.log*

@@ -1,24 +1,74 @@
 # Student Management System
 > Built for Shipsy AI Campus Assignment
 
-A full-stack student management application showcasing effective AI integration, clean code architecture, and modern web development practices. This project demonstrates the practical use of AI tools in development while maintaining high code quality and documentation standards.
+## � Live Access & Demo
+
+🌐 **Live Application**: [Open App](https://ai-campus-assignment-l9w4.onrender.com)  
+📹 **Tutorial Video**: [Watch Tutorial](https://vimeo.com/1124650030?share=copy)
+
+A full-stack student management application showcasing effective AI integration, clean code architecture, and modern web development practices.
+
+## 📸 Screenshots
+
+### Login Page
+![Login Page](screenshots/login-page.png)
+*Glass-morphism UI with Dark Theme Support*
+
+### Student Dashboard
+![Student Dashboard](screenshots/dashboard.png)
+*Feature-rich dashboard with advanced filtering and sorting*
+
+## 🚀 Quick Start
+
+### Access Live Application
+1. Open [Student Management System](https://ai-campus-assignment-l9w4.onrender.com)
+2. Login with demo account:
+   ```
+   Username: testuser
+   Password: test123
+   ```
+3. Key Features to Try:
+   - Create and manage student records
+   - Use filters (branch) and search (name)
+   - Sort by academic performance
+   - Experience Dark/Glass UI themes
+
+### Local Development
+1. Clone and install dependencies
+   ```bash
+   git clone https://github.com/raiumang07/ai-campus-assignment.git
+   cd ai-campus-assignment
+   npm install
+   ```
+
+2. Set up environment variables
+   ```bash
+   # Create .env file in backend/ directory
+   MONGODB_URI=your_mongodb_connection_string
+   JWT_SECRET=your_secure_jwt_secret
+   ```
+
+3. Launch application
+   ```bash
+   npm start
+   ```
+   Access at [http://localhost:3000](http://localhost:3000)
 
 ## 🎯 Assignment Requirements & Implementation
 
 ### 1. AI Integration
-- **Gemini AI Integration**: Effectively used throughout development for:
+- **Gemini AI Integration**: Used throughout development for:
   - Initial project scaffolding
   - Authentication system design
   - UI/UX improvements
   - Code optimization
   - Documentation generation
-- **Development Timeline**: Completed within 24-hour constraint
-- **AI Usage Documentation**: Detailed log maintained below
+- **Development Process**: Details in [commits.md](docs/commits.md)
 
 ### 2. Technical Implementation
 
 #### Authentication System
-- **Architecture Decision**: JWT-based authentication with secure password hashing
+- **Architecture**: JWT-based authentication with secure password hashing
   - `bcryptjs` for password encryption
   - JSON Web Tokens for stateless authentication
   - HTTP-only cookies for secure token storage
@@ -40,29 +90,49 @@ A full-stack student management application showcasing effective AI integration,
     overallPercentage: Virtual      // Calculated: 0.7*cgpaPercentage + 0.3*attendance
   }
   ```
-
-#### Advanced Data Management
-- **Pagination**: 10 items per page with dynamic page navigation
-- **Filtering**: Multiple filter options
-  - Branch filtering (CSE, IT, ECE, ME, CE)
-  - Name search functionality
-- **Sorting**: Multiple sort fields
-  - CGPA (academic performance)
   - Overall Percentage (comprehensive evaluation)
   - Name (alphabetical)
 
-## 🌟 Features
+## 🌟 Features & Implementation
 
-- **Secure User Authentication**: JWT-based authentication with password hashing (bcrypt).
-- **CRUD Operations**: Create, Read, Update, and Delete student records.
-- **Dynamic Data Management**: Pagination, sorting (by name, cgpa, overallPercentage), and filtering (by branch, name).
-- **Calculated Fields**: The application automatically calculates two derived fields:
-    - `cgpaPercentage`: `(cgpa / 10) * 100`
-    - `overallPercentage`: `0.7 * cgpaPercentage + 0.3 * attendance`
+### Core Features
+- **Authentication**: JWT-based with secure password hashing
+- **Student Management**: Complete CRUD operations
+- **Calculated Fields**: Automatic CGPA and overall percentage calculation
+- **Advanced Filtering**: Search, sort, and pagination
+- **Modern UI**: Responsive design with theme support
 
-## Data Model
+### OOP & Clean Code
+- **Encapsulation**: Data and behavior bundled in models
+- **Modularity**: Clear separation of concerns (MVC + Services)
+- **SOLID Principles**: Single responsibility, Interface segregation
+- **Clean Code**: Meaningful names, proper error handling
+- **Documentation**: Comprehensive API docs and inline comments
 
-The `Student` model includes the following fields:
+### Security & Best Practices
+- **Authentication**: JWT tokens, HTTP-only cookies
+- **Data Protection**: Input validation, password hashing
+- **Error Handling**: Proper error classification
+- **Performance**: Efficient database queries
+- **Testing**: Complete Postman test suite
+
+### Technical Highlights
+```javascript
+// Calculated Fields Implementation
+cgpaPercentage = (cgpa / 10) * 100
+overallPercentage = 0.7 * cgpaPercentage + 0.3 * attendance
+
+// Project Structure
+backend/
+├── models/      # Data structure
+├── services/    # Business logic
+├── controllers/ # Request handling
+└── middleware/  # Auth & validation
+```
+
+## 🔧 Technical Details
+
+The `Student` model includes:
 
 - **`name`**: String, Required
 - **`branch`**: String, Enum (`CSE`, `IT`, `ECE`, `ME`, `CE`), Required
@@ -72,57 +142,18 @@ The `Student` model includes the following fields:
 - **`cgpaPercentage`**: Number, Calculated
 - **`overallPercentage`**: Number, Calculated
 
-## Tech Stack
+## 🛠 Tech Stack
 
-- **Backend**: Node.js, Express.js
-- **Database**: MongoDB (with Mongoose ODM)
-- **Frontend**: EJS (Embedded JavaScript templates), Tailwind CSS
-- **Authentication**: JSON Web Tokens (JWT), bcrypt.js for password hashing
-- **Development**: `nodemon` for live server reloading
+- **Backend**: Node.js, Express.js, MongoDB
+- **Frontend**: EJS Templates, Tailwind CSS
+- **Security**: JWT, bcrypt.js
+- **Tools**: Git, ESLint, Postman
 
-## Test Credentials
+## 🔗 Documentation
 
-For testing the application, use these credentials:
-```
-Username: tester
-Password: test123
-```
-
-## Local Setup and Installation
-
-Follow these steps to run the project on your local machine.
-
-1.  **Clone the repository:**
-    ```bash
-    git clone <repository-url>
-    cd ai-campus-assignment
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Set up Environment Variables:**
-    Create a `.env` file in the `backend` directory. This file is ignored by Git and should contain your secret keys.
-
-    - `MONGODB_URI`: Your full connection string for your MongoDB Atlas database.
-    - `JWT_SECRET`: A long, random, and secret string used for signing authentication tokens.
-
-    **Example `.env` file:**
-    ```
-    MONGODB_URI=mongodb+srv://<username>:<password>@<cluster-url>/<database-name>?retryWrites=true&w=majority
-    JWT_SECRET=your-super-secret-and-long-random-string
-    ```
-
-4.  **Run the application locally:**
-    ```bash
-    npm run dev
-    ```
-
-    The application will be available at `http://localhost:3000`.
-
-## 🔗 API Documentation
+- [API Documentation](postman_collection.json)
+- [Architecture Details](docs/architecture.md)
+- [Development History](docs/commits.md)
 
 ### Authentication Endpoints
 
